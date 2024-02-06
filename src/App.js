@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
+  
+const App = () => {
 
-function App() {
+  const [name, setName] = useState("")
+  const [lastname, setLastname] = useState("")
+  const [fullname, setFullname] = useState("")
+  const [lastnameNew, setLastnameNew] = useState("")
+
+  const onSubmits = (e) => {
+    e.preventDefault()
+    setFullname(name)
+    setLastnameNew(lastname)
+  }
+
+  const InputEvent1 = (e) => {
+    setName(e.target.value)
+  }
+
+  const InputEvent2 = (e) => {
+    setLastname(e.target.value)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className='main_div'>
+        <form onSubmit={onSubmits}>
+          <div>
+            <h1>
+              Hello {fullname} {lastnameNew}
+            </h1>
+            <input 
+              type='text'
+              placeholder='Enter your name'
+              onChange={InputEvent1}
+              value={name}
+            />
+            <input 
+              type='text'
+              placeholder='Enter your last name'
+              onChange={InputEvent2}
+              value={lastname}
+            />
+            <br />
+            <button type='submit'> Submit Me 👍</button>
+          </div>
+        </form>
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
